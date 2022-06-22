@@ -1,7 +1,7 @@
 //Css
 import './App.css';
 
-//States
+//Hooks
 import{useCallback, useEffect, useState} from 'react'
 
 
@@ -32,7 +32,7 @@ function App() {
   
   const [guessedLetters, setGuessedLetters] = useState([])
   const [wrongLetters, setWrongLetters] = useState([])
-  const [guesses, setGuesses] = useState(3)
+  const [guesses, setGuesses] = useState(5)
   const [score, setScore] = useState(0)
   
 
@@ -66,6 +66,7 @@ function App() {
     const normalizeLetter = letter.toLowerCase()
     
     if(guessedLetters.includes(normalizeLetter) ||wrongLetters.includes(normalizeLetter)){
+      
       return
     }
 
@@ -86,6 +87,7 @@ function App() {
   const clearLetterStates = () =>{
     setGuessedLetters([])
     setWrongLetters([])
+    setGuesses(5)
   }
 
   useEffect(()=>{
