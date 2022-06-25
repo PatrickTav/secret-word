@@ -16,7 +16,7 @@ import GameOver from './components/GameOver';
 const stages = [
   {id:1 , name:'start'},
   {id:2 , name:'game'},
-  {id:1 , name:'end'},
+  {id:3 , name:'end'},
 ]
 
 
@@ -50,6 +50,7 @@ function App() {
 
   const startGame = useCallback(()=>{
     clearLetterStates()
+    
     const {word, category} = pickedWordAndCategory() 
     let wordLetter = word.split('')
     wordLetter = wordLetter.map(letter=> letter.toLowerCase())
@@ -88,6 +89,8 @@ function App() {
     setGuessedLetters([])
     setWrongLetters([])
     setGuesses(5)
+
+    
   }
 
   useEffect(()=>{
@@ -102,10 +105,10 @@ function App() {
     const uniqueLetters = [...new Set(pickedLetter)]
 
     if(guessedLetters.length === uniqueLetters.length){
-      setScore((actualScore)=> actualScore += 100)
+      setScore((actualScore)=> actualScore += 100  )
       startGame()
     }
-  }, [guessedLetters, pickedLetter, startGame])
+  }, [guessedLetters, pickedLetter, startGame, score])
 
   const retry = ()=>{
     setGameStage(stages[0].name)
@@ -113,7 +116,7 @@ function App() {
     setGuesses(3)
   }
 
-
+console.log(score)
   
   return (
     <div className="App">
